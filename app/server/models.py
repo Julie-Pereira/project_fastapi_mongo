@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 from bson.objectid import ObjectId
 
 
-class Orders(BaseModel):
+class Order(BaseModel):
     id: ObjectId = Field(alias='_id')
     name: str
     firstname: str

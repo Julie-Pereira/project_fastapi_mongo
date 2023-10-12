@@ -15,3 +15,11 @@ Testing a CRUD application with FastAPI and MongoDB
     $ source venv/bin/activate
     $ pip install -r requirements.txt
     ```
+
+3. Run app:
+
+   ```
+   $ export PYTHONPATH=$PWD
+   $ python3 app/main.py
+   ```
+   
