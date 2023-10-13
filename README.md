@@ -16,10 +16,17 @@ Testing a CRUD application with FastAPI and MongoDB
     $ pip install -r requirements.txt
     ```
 
-3. Run app:
+3. Run application:
 
    ```
    $ export PYTHONPATH=$PWD
-   $ python3 app/main.py
+   $ python3 main.py
    ```
-   
+   The starter listens on port 8000 on address http://localhost:8000/docs
+
+4. Pre-commit
+
+   ```
+   $ pip install pre-commit 
+   $ pre-commit run --all-files
+   ```

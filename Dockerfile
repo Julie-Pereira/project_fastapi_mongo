@@ -1,11 +1,11 @@
-FROM python:3.9
+FROM python:3.11
 
-WORKDIR /code
+WORKDIR /app
 
-COPY ./requirements.txt /code/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-COPY ./app /code/app
+COPY ./app /./app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload" "--loop=asyncio"]
+CMD ["uvicorn", "app:app", "--host", "localhost", "--port", "8000", "--reload" "--loop=asyncio"]
