@@ -1,11 +1,10 @@
-from fastapi import FastAPI, Body
-from database.database import orders_collection
-from models.orders import (Order)
-from fastapi import APIRouter
-from bson.objectid import ObjectId
 from typing import Union
+
+from bson.objectid import ObjectId
+from database.database import orders_collection
+from fastapi import APIRouter, FastAPI
 from fastapi.encoders import jsonable_encoder
-import json
+from models.orders import Order
 
 app = FastAPI()
 
@@ -13,10 +12,12 @@ orders_router = APIRouter()
 
 
 @orders_router.get("/create_order/", response_model=Order)
-async def create_order(order: Order = Body(...)) -> Order:
+async def create_order(order: Order) -> Order:
     order = jsonable_encoder(order)
     created_order = await orders_collection.insert_one(order)
-    new_order = await orders_collection.find_one({"_id": created_order.inserted_id})
+    new_order = await orders_collection.find_one(
+        {"_id": created_order.inserted_id}
+    )
     return Order(**new_order)
 
 
@@ -29,11 +30,12 @@ async def retrieve_order(order_id: str) -> Union[Order, str]:
 
 
 @orders_router.get("/update_order/{order_id}/{data}")
-async def update_order(order_id: str, data: str) -> Union[Order, str]:
+async def update_order(order_id: str, payload: Order) -> Union[Order, str]:
+    payload = jsonable_encoder(payload)
     order = await orders_collection.find_one({"_id": ObjectId(order_id)})
     if order:
         updated_order = await orders_collection.update_one(
-            {"_id": ObjectId(order_id)}, {"$set": json.loads(data)}
+            {"_id": ObjectId(order_id)}, {"$set": payload}
         )
         if updated_order:
             return Order(**order)
@@ -46,4 +48,4 @@ async def delete_order(order_id: str) -> str:
     if order:
         await orders_collection.delete_one({"_id": ObjectId(order_id)})
         return f'The order {order_id} was successfully deleted'
-    return f'No order found, unable to delete'
+    return 'No order found, unable to delete'

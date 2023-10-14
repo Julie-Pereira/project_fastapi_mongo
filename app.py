@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from rules.order import orders_router
 
 app = FastAPI()

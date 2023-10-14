@@ -27,6 +27,7 @@ Testing a CRUD application with FastAPI and MongoDB
 4. Pre-commit
 
    ```
-   $ pip install pre-commit 
+   $ pip install pre-commit
    $ pre-commit run --all-files
    ```
+

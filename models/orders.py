@@ -1,6 +1,7 @@
 import uuid
-from pydantic import BaseModel, Field
 from enum import Enum
+
+from pydantic import BaseModel, Field
 
 __all__ = [
     'Order',
@@ -47,6 +48,6 @@ class UpdateOrder(BaseModel):
                 "name": "Pereira",
                 "firstname": "Julie",
                 "dish": "pizza",
-                "number": 2,
+                "number": 3,
             }
         }
