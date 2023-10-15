@@ -6,7 +6,6 @@ COPY ./requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-COPY ./app /./app
+COPY ./app /app
 
 CMD ["uvicorn", "app:app", "--host", "localhost", "--port", "8000", "--reload", "--loop=asyncio"]
-

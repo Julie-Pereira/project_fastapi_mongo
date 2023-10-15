@@ -1,5 +1,6 @@
 import uuid
 from enum import Enum
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -36,10 +37,10 @@ class Order(BaseModel):
 
 
 class UpdateOrder(BaseModel):
-    name: str
-    firstname: str
-    dish: Dish
-    number: int
+    name: Optional[str]
+    firstname: Optional[str]
+    dish: Optional[Dish]
+    number: Optional[int]
 
     class Config:
         arbitrary_types_allowed = True
